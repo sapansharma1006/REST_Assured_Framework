@@ -70,19 +70,6 @@
       <type>pom</type>
     </dependency>
 
-    <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path &ndash;&gt;-->
-    <!--<dependency>-->
-      <!--<groupId>com.jayway.jsonpath</groupId>-->
-      <!--<artifactId>json-path</artifactId>-->
-      <!--<version>2.4.0</version>-->
-    <!--</dependency>-->
-
-    <!--<dependency>-->
-      <!--<groupId>com.jayway.jsonpath</groupId>-->
-      <!--<artifactId>json-path-assert</artifactId>-->
-      <!--<version>2.4.0</version>-->
-      <!--&lt;!&ndash;<scope>test</scope>&ndash;&gt;-->
-    <!--</dependency>-->
     <dependency>
       <groupId>com.jayway.jsonpath</groupId>
       <artifactId>json-path</artifactId>
@@ -154,5 +141,59 @@
         </plugin>
       </plugins>
     </pluginManagement>
+  <!--</build>-->
+
+  <!--<build>-->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>net.masterthought</groupId>
+        <artifactId>maven-cucumber-reporting</artifactId>
+        <version>5.0.0</version>
+        <executions>
+          <execution>
+            <id>execution</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <projectName>cucumber-jvm-example</projectName>
+              <!-- optional, per documentation set this to "true" to bypass generation of Cucumber Reports entirely, defaults to false if not specified -->
+              <skip>false</skip>
+              <!-- output directory for the generated report -->
+              <outputDirectory>${project.build.directory}</outputDirectory>
+              <!-- optional, defaults to outputDirectory if not specified -->
+              <inputDirectory>${project.build.directory}/jsonReports</inputDirectory>
+              <jsonFiles>
+                <!-- supports wildcard or name pattern -->
+                <param>**/*.json</param>
+              </jsonFiles>
+              <!-- optional, defaults to outputDirectory if not specified -->
+              <!--<classificationDirectory>${project.build.directory}/classifications</classificationDirectory>-->
+              <!--<classificationFiles>-->
+                <!--&lt;!&ndash; supports wildcard or name pattern &ndash;&gt;-->
+                <!--<param>sample.properties</param>-->
+                <!--<param>other.properties</param>-->
+              <!--</classificationFiles>-->
+              <!--<parallelTesting>false</parallelTesting>-->
+              <!-- optional, set true to group features by its Ids -->
+              <mergeFeaturesById>false</mergeFeaturesById>
+              <!-- optional, set true to get a final report with latest results of the same test from different test runs -->
+              <mergeFeaturesWithRetest>false</mergeFeaturesWithRetest>
+              <!-- optional, set true to fail build on test failures -->
+              <checkBuildResult>false</checkBuildResult>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
+
 </project>
