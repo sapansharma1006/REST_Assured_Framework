@@ -11,7 +11,7 @@ Feature: Validate Google Place API
      Examples:
           |name|language|address|
           |sapan|hindi  |seoni  |
- #         |mahima|english|bangalore|
+          |mahima|english|bangalore|
 
    @All  @DeletePlace
      Scenario: Verify whether place id is getting deleted using delete place API
@@ -20,3 +20,12 @@ Feature: Validate Google Place API
           Then the API got success with status code 200
           And "status" in response body is "OK"
 
+
+   @AddPlaceSheet
+         Scenario: Verify if place is getting added through excel sheet using Add Place API
+         Given Add Place Payload with "name" "language" "address" through sheet
+         When user calls "AddPlaceAPI" with "POST" request
+         Then the API got success with status code 200
+         And "status" in response body is "OK"
+         And "scope" in response body is "APP"
+         And verify place_id created maps to "name" using "GetPlaceAPI"

@@ -1,0 +1,17 @@
+# Created at 2020-04-07T11:39:23.851
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: DEFAULT
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:397)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:830)
+
+
+# Created at 2020-04-07T11:39:24.176
+Unexpected IOException: 7,1,Validate Google Place API,Verify if place is getting added through excel sheet using Add Place API(Validate Google Place API),null,Shutdown in progress,null,Shutdown in progress,Shutdown in progress,java.lang.IllegalStateException: Shutdown in progress\000A
+
+
+# Created at 2020-04-07T11:39:24.313
+Unexpected IOException: 2,1,org.apache.maven.surefire.junit4.JUnit4Provider,cucumber.Options.TestRunner,null,null,null
+
+

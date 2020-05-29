@@ -3,46 +3,47 @@
     "line": 1,
     "elements": [
       {
-        "start_timestamp": "2020-04-06T11:05:54.944Z",
-        "line": 13,
-        "name": "Verify if place is getting added  using Add Place API",
+        "start_timestamp": "2020-04-06T17:48:57.330Z",
+        "line": 25,
+        "name": "Verify if place is getting added through excel sheet using Add Place API",
         "description": "",
-        "id": "validate-google-place-api;verify-if-place-is-getting-added--using-add-place-api;;2",
+        "id": "validate-google-place-api;verify-if-place-is-getting-added-through-excel-sheet-using-add-place-api",
         "type": "scenario",
-        "keyword": "Scenario Outline",
+        "keyword": "Scenario",
         "steps": [
           {
             "result": {
-              "duration": 759619872,
-              "status": "passed"
+              "error_message": "java.lang.IllegalStateException: Shutdown in progress\n\tat java.base/java.io.DeleteOnExitHook.add(DeleteOnExitHook.java:61)\n\tat java.base/java.io.File.deleteOnExit(File.java:1091)\n\tat org.apache.poi.util.DefaultTempFileCreationStrategy.createTempFile(DefaultTempFileCreationStrategy.java:114)\n\tat org.apache.poi.util.TempFile.createTempFile(TempFile.java:66)\n\tat org.apache.poi.openxml4j.opc.ZipPackage.closeImpl(ZipPackage.java:422)\n\tat org.apache.poi.openxml4j.opc.OPCPackage.close(OPCPackage.java:457)\n\tat org.apache.poi.ooxml.POIXMLDocument.close(POIXMLDocument.java:204)\n\tat org.apache.poi.xssf.usermodel.XSSFWorkbook.close(XSSFWorkbook.java:594)\n\tat Resources.Utils.getDataFromSheet(Utils.java:107)\n\tat StepDefinition.StepDefinition.add_Place_Payload_with_through_sheet(StepDefinition.java:96)\n\tat ✽.Add Place Payload with \"\u003cname\u003e\" \"\u003clanguage\u003e\" \"\u003caddress\u003e\" through sheet(file:src/test/java/Features/AddPlace.feature:26)\n",
+              "duration": 89471616710815,
+              "status": "failed"
             },
-            "line": 5,
-            "name": "Add Place Payload with \"sapan\" \"hindi\" \"seoni\"",
+            "line": 26,
+            "name": "Add Place Payload with \"\u003cname\u003e\" \"\u003clanguage\u003e\" \"\u003caddress\u003e\" through sheet",
             "match": {
               "arguments": [
                 {
-                  "val": "\"sapan\"",
+                  "val": "\"\u003cname\u003e\"",
                   "offset": 23
                 },
                 {
-                  "val": "\"hindi\"",
-                  "offset": 31
+                  "val": "\"\u003clanguage\u003e\"",
+                  "offset": 32
                 },
                 {
-                  "val": "\"seoni\"",
-                  "offset": 39
+                  "val": "\"\u003caddress\u003e\"",
+                  "offset": 45
                 }
               ],
-              "location": "StepDefinition.add_Place_Payload_with(String,String,String)"
+              "location": "StepDefinition.add_Place_Payload_with_through_sheet(String,String,String)"
             },
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 1140420918,
-              "status": "passed"
+              "duration": 217762,
+              "status": "skipped"
             },
-            "line": 6,
+            "line": 27,
             "name": "user calls \"AddPlaceAPI\" with \"POST\" request",
             "match": {
               "arguments": [
@@ -61,7 +62,123 @@
           },
           {
             "result": {
-              "duration": 1220649,
+              "duration": 41677,
+              "status": "skipped"
+            },
+            "line": 28,
+            "name": "the API got success with status code 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 37
+                }
+              ],
+              "location": "StepDefinition.the_API_got_success_with_status_code(Integer)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 36524,
+              "status": "skipped"
+            },
+            "line": 29,
+            "name": "\"status\" in response body is \"OK\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"status\"",
+                  "offset": 0
+                },
+                {
+                  "val": "\"OK\"",
+                  "offset": 29
+                }
+              ],
+              "location": "StepDefinition.in_response_body_is(String,String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 27951,
+              "status": "skipped"
+            },
+            "line": 30,
+            "name": "\"scope\" in response body is \"APP\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"scope\"",
+                  "offset": 0
+                },
+                {
+                  "val": "\"APP\"",
+                  "offset": 28
+                }
+              ],
+              "location": "StepDefinition.in_response_body_is(String,String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 22598,
+              "status": "skipped"
+            },
+            "line": 31,
+            "name": "verify place_id created maps to \"\u003cname\u003e\" using \"GetPlaceAPI\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"\u003cname\u003e\"",
+                  "offset": 32
+                },
+                {
+                  "val": "\"GetPlaceAPI\"",
+                  "offset": 47
+                }
+              ],
+              "location": "StepDefinition.verify_place_id_created_maps_to_using(String,String)"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@All"
+          },
+          {
+            "name": "@AddPlaceSheet"
+          }
+        ]
+      }
+    ],
+    "name": "Validate Google Place API",
+    "description": "",
+    "id": "validate-google-place-api",
+    "keyword": "Feature",
+    "uri": "file:src/test/java/Features/AddPlace.feature",
+    "tags": []
+  }
+]s": [
+                {
+                  "val": "\"AddPlaceAPI\"",
+                  "offset": 11
+                },
+                {
+                  "val": "\"POST\"",
+                  "offset": 30
+                }
+              ],
+              "location": "StepDefinition.user_calls_with_request(String,String)"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 82070,
               "status": "passed"
             },
             "line": 7,
@@ -79,7 +196,7 @@
           },
           {
             "result": {
-              "duration": 199334511,
+              "duration": 10955612,
               "status": "passed"
             },
             "line": 8,
@@ -101,7 +218,7 @@
           },
           {
             "result": {
-              "duration": 8263141,
+              "duration": 9588010,
               "status": "passed"
             },
             "line": 9,
@@ -123,20 +240,20 @@
           },
           {
             "result": {
-              "duration": 284873012,
+              "duration": 242964987,
               "status": "passed"
             },
             "line": 10,
-            "name": "verify place_id created maps to \"sapan\" using \"GetPlaceAPI\"",
+            "name": "verify place_id created maps to \"mahima\" using \"GetPlaceAPI\"",
             "match": {
               "arguments": [
                 {
-                  "val": "\"sapan\"",
+                  "val": "\"mahima\"",
                   "offset": 32
                 },
                 {
                   "val": "\"GetPlaceAPI\"",
-                  "offset": 46
+                  "offset": 47
                 }
               ],
               "location": "StepDefinition.verify_place_id_created_maps_to_using(String,String)"
@@ -150,110 +267,6 @@
           },
           {
             "name": "@AddPlace"
-          }
-        ]
-      },
-      {
-        "start_timestamp": "2020-04-06T11:05:57.366Z",
-        "before": [
-          {
-            "result": {
-              "duration": 141176,
-              "status": "passed"
-            },
-            "match": {
-              "location": "Hooks.beforeDeleteScenario()"
-            }
-          }
-        ],
-        "line": 17,
-        "name": "Verify whether place id is getting deleted using delete place API",
-        "description": "",
-        "id": "validate-google-place-api;verify-whether-place-id-is-getting-deleted-using-delete-place-api",
-        "type": "scenario",
-        "keyword": "Scenario",
-        "steps": [
-          {
-            "result": {
-              "duration": 1623664,
-              "status": "passed"
-            },
-            "line": 18,
-            "name": "Delete Place Payload",
-            "match": {
-              "location": "StepDefinition.delete_Place_Payload()"
-            },
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "duration": 273033826,
-              "status": "passed"
-            },
-            "line": 19,
-            "name": "user calls \"DeletePlaceAPI\" with \"POST\" request",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"DeletePlaceAPI\"",
-                  "offset": 11
-                },
-                {
-                  "val": "\"POST\"",
-                  "offset": 33
-                }
-              ],
-              "location": "StepDefinition.user_calls_with_request(String,String)"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 63658,
-              "status": "passed"
-            },
-            "line": 20,
-            "name": "the API got success with status code 200",
-            "match": {
-              "arguments": [
-                {
-                  "val": "200",
-                  "offset": 37
-                }
-              ],
-              "location": "StepDefinition.the_API_got_success_with_status_code(Integer)"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 6149792,
-              "status": "passed"
-            },
-            "line": 21,
-            "name": "\"status\" in response body is \"OK\"",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"status\"",
-                  "offset": 0
-                },
-                {
-                  "val": "\"OK\"",
-                  "offset": 29
-                }
-              ],
-              "location": "StepDefinition.in_response_body_is(String,String)"
-            },
-            "keyword": "And "
-          }
-        ],
-        "tags": [
-          {
-            "name": "@All"
-          },
-          {
-            "name": "@DeletePlace"
           }
         ]
       }

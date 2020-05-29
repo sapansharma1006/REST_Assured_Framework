@@ -11,6 +11,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 import java.io.IOException;
 
@@ -32,6 +33,8 @@ public class StepDefinition extends Utils {
         request=given().spec(getRequestSpecification()).body(data.getAddPlacePayload(name,language,address));
 
 
+
+
     }
 
     @When("user calls {string} with {string} request")
@@ -49,6 +52,7 @@ public class StepDefinition extends Utils {
             response = request.when().get(apiResource.getResource());
 
 
+
     }
 
     @Then("the API got success with status code {int}")
@@ -56,6 +60,7 @@ public class StepDefinition extends Utils {
 
 
         assertEquals(response.statusCode(),200);
+
     }
 
     @Then("{string} in response body is {string}")
@@ -83,6 +88,24 @@ public class StepDefinition extends Utils {
     public void delete_Place_Payload() throws IOException {
 
         request=given().spec(getRequestSpecification()).body(data.getDeletePayload(place_id));
+
+    }
+
+    @Given("Add Place Payload with {string} {string} {string} through sheet")
+    public void add_Place_Payload_with_through_sheet(String name, String language, String address) throws IOException, InvalidFormatException {
+
+//        for (int i=0;i<getDataFromSheet().size();i++) {
+//            name = getDataFromSheet().get(i).toString();
+//            i++;
+//            language=getDataFromSheet().get(i).toString();
+//            i++;
+//            address=getDataFromSheet().get(i).toString();
+//        }
+
+        name =getDataFromSheet().get(0).toString();
+        language=getDataFromSheet().get(1).toString();
+        address=getDataFromSheet().get(2).toString();
+        request=given().spec(getRequestSpecification()).body(data.getAddPlacePayload(name,language,address));
 
     }
 
